@@ -13,6 +13,8 @@ const taskSchema = new mongoose.Schema({
 });
 
 
-// module.exports = mongoose.model('rest', taskSchema);
 
-const task = mongoose.model('rest', taskSchema);
+
+const taskModel = mongoose.model("todo", taskSchema);
+
+module.exports = taskModel;
