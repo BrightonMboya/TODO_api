@@ -11,6 +11,13 @@ router.post('/', taskManager.createTasks)
 // retrieve a task by ID
 router.get('/:taskId', taskManager.retreiveTask)
 
+//delete
+router.delete('/:taskId', taskManager.deleteTodo)
+
+//update
+router.put('/:taskId', taskManager.updateTodo)
+
+
 // a GET route
 router.get('/about', (req, res) => {
     res.send('This is a sample GET route')
