@@ -16,6 +16,9 @@ router.delete('/:taskId', taskManager.deleteTodo)
 
 //update
 router.put('/:taskId', taskManager.updateTodo)
+//complete task
+router.put('/complete/:taskId', taskManager.completeTodo)
+
 
 
 // a GET route

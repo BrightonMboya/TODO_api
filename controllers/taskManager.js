@@ -112,3 +112,35 @@ exports.updateTodo = async (req, res) => {
     },
   });
 };
+
+
+//update complete
+exports.completeTodo = async (req, res) => {
+    const taskId = req.params.taskId;
+    const todo = await taskModel.findById({ _id: taskId });
+  
+    if (!todo) {
+      return res.status(400).json({
+        success: false,
+        data: {
+          message: "No such task found",
+        },
+      });
+    }
+  
+    const updatedTodo = await taskModel.findByIdAndUpdate(
+      taskId,
+      {
+        is_completed: !todo.is_completed,
+      },
+      { new: true }
+    );
+  
+    return res.status(200).json({
+      success: true,
+      data: {
+        message: "Yur task is completed",
+      },
+    });
+  };
+  
