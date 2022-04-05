@@ -14,6 +14,9 @@ const app = express()
 // using the json body parser
 app.use(express.json())
 
+// start listening to a port
+const PORT =  process.env.PORT || 3000;
+
 
 
 app.get('/', (req, res) => {
@@ -25,8 +28,15 @@ app.use('/tasks', taskRoute)
 
 
 // connect to a db
-mongoose.connect(process.env.db_connection, () => console.log('Connected to a database'))
+mongoose.connect(process.env.db_connection,{
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
 
-// start listening to a port
-const PORT =  process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`started listening at ${PORT}`));
+}).then(()=>{
+    console.log('Connected to a database')
+    app.listen(PORT, () => console.log(`started listening at ${PORT}`));
+    
+
+}) 
+
+
